@@ -1,0 +1,14 @@
+{
+  "domain": "azae",
+  "name": "HA Azaé",
+  "version": "0.1.0",
+  "config_flow": true,
+  "documentation": "https://github.com/pierrec18/ha-azae",
+  "issue_tracker": "https://github.com/pierrec18/ha-azae/issues",
+  "codeowners": [
+    "@pierrec18"
+  ],
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "requirements": []
+}

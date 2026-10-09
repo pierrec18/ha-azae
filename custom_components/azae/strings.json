@@ -1,0 +1,65 @@
+{
+  "title": "HA Azaé",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Azaé / A2micile",
+        "description": "Paths are JSON pointers (/data/user/token). Tokens are not persisted.",
+        "data": {
+          "email": "Email",
+          "password": "Password",
+          "code_agence": "Agency code (text, preserve leading zeros)",
+          "matricule": "Client identifier (text)",
+          "token_path": "Token JSON pointer"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Authentification",
+        "description": "Enter the new password.",
+        "data": {
+          "password": "Password"
+        }
+      },
+      "reconfigure": {
+        "title": "Password",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Authentication rejected.",
+      "cannot_connect": "API unavailable or rate limited. Try later.",
+      "unsupported_schema": "Unsupported response. Check the token pointer."
+    },
+    "abort": {
+      "already_configured": "Client already configured.",
+      "reauth_successful": "Authentication updated.",
+      "reconfigure_successful": "Configuration updated."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options Azaé",
+        "description": "Presence is unknown by default. Pointage mode infers declared presence from clock records, without verifying physical presence. Read the README before enabling it.",
+        "data": {
+          "token_path": "Token JSON pointer",
+          "events_path": "List JSON pointer (empty = root)",
+          "start_path": "Start pointer (relative to each intervention)",
+          "end_path": "End pointer",
+          "clock_in_path": "Clock-in pointer",
+          "clock_out_path": "Clock-out pointer",
+          "timezone": "Timezone for naive timestamps",
+          "poll_seconds": "API polling interval (seconds)",
+          "presence_mode": "Presence: unknown or pointage",
+          "evidence_hours": "Maximum clock evidence age (hours)",
+          "label_filter": "Label to include (empty = all interventions)"
+        }
+      }
+    },
+    "error": {
+      "invalid_options": "Check pointers, timezone and intervals."
+    }
+  }
+}

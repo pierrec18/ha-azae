@@ -1,0 +1,65 @@
+{
+  "title": "HA Azaé",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Azaé / A2micile",
+        "description": "Les chemins sont des pointeurs JSON (/data/user/token). Aucun token ne sera enregistré.",
+        "data": {
+          "email": "Adresse e-mail",
+          "password": "Mot de passe",
+          "code_agence": "Code agence (texte, garder les zéros)",
+          "matricule": "Matricule usager (texte)",
+          "token_path": "Chemin JSON du token"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Authentification",
+        "description": "Saisir le nouveau mot de passe.",
+        "data": {
+          "password": "Mot de passe"
+        }
+      },
+      "reconfigure": {
+        "title": "Mot de passe",
+        "data": {
+          "password": "Mot de passe"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Identifiants refusés.",
+      "cannot_connect": "API inaccessible ou limitée. Réessayer plus tard.",
+      "unsupported_schema": "Réponse non reconnue. Vérifier le chemin du token."
+    },
+    "abort": {
+      "already_configured": "Cet usager est déjà configuré.",
+      "reauth_successful": "Authentification mise à jour.",
+      "reconfigure_successful": "Configuration mise à jour."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options Azaé",
+        "description": "Par défaut la présence reste inconnue. Le mode pointage déduit une présence déclarée des pointages, sans garantir une présence physique. Voir le README avant de l’activer.",
+        "data": {
+          "token_path": "Chemin JSON du token",
+          "events_path": "Chemin JSON de la liste (vide = racine)",
+          "start_path": "Chemin du début (dans chaque intervention)",
+          "end_path": "Chemin de la fin",
+          "clock_in_path": "Chemin du pointage de début",
+          "clock_out_path": "Chemin du pointage de fin",
+          "timezone": "Fuseau des dates sans décalage",
+          "poll_seconds": "Actualisation API (secondes)",
+          "presence_mode": "Présence : unknown ou pointage",
+          "evidence_hours": "Validité maximale du pointage (heures)",
+          "label_filter": "Libellé à inclure (vide = toutes les interventions)"
+        }
+      }
+    },
+    "error": {
+      "invalid_options": "Vérifier les chemins, le fuseau et les intervalles."
+    }
+  }
+}

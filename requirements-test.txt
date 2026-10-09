@@ -1,0 +1,3 @@
+# Verified together on Python 3.14; no account or live API required.
+pytest-homeassistant-custom-component==0.13.371
+homeassistant==2026.10.0
