@@ -1,5 +1,6 @@
 """Entities also update from the local clock without extra API requests."""
 from datetime import timedelta
+from homeassistant.core import callback
 from homeassistant.helpers.event import async_track_time_interval
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -15,5 +16,6 @@ class AzaeEntity(CoordinatorEntity):
         await super().async_added_to_hass()
         self.async_on_remove(async_track_time_interval(self.hass, self._tick, timedelta(seconds=30)))
 
+    @callback
     def _tick(self, now):
         self.async_write_ha_state()

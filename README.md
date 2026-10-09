@@ -1,6 +1,6 @@
 # HA Azaé
 
-![Logo Azaé](assets/azae-logo.svg)
+![Logo Azaé](custom_components/azae/brand/logo.png)
 
 Intégration personnalisée non officielle, version 0.1.0, conçue et testée sur
 Home Assistant **2026.10.0** (Python 3.14). Installation manuelle immédiate ;

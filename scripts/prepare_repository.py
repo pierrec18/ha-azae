@@ -16,5 +16,7 @@ path = root / "custom_components/azae/manifest.json"
 manifest = json.loads(path.read_text())
 url = f"https://github.com/{args.owner}/{args.repository}"
 manifest.update(documentation=url, issue_tracker=url + "/issues", codeowners=["@" + args.owner])
+manifest = {**{key: manifest[key] for key in ("domain", "name")},
+            **{key: manifest[key] for key in sorted(manifest) if key not in ("domain", "name")}}
 path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
 print("Repository metadata updated. Nothing published.")

@@ -108,3 +108,31 @@ async def test_calendar_auth_starts_reauth(hass, account, options, mock_api, fre
             await entry.runtime_data.calendar_events(NOW, NOW + timedelta(days=1))
         reauth.assert_called_once_with(hass)
     await hass.config_entries.async_unload(entry.entry_id)
+
+async def test_local_timer_expires_pointage_and_planning_without_api(hass, account, options, mock_api, freezer):
+    from pytest_homeassistant_custom_component.common import async_fire_time_changed
+    options["presence_mode"] = "pointage"
+    freezer.move_to(NOW)
+    data = row()
+    data["heure_pointage_debut"] = "2026-10-09 05:00:10"
+    data["end"] = "2026-10-09 13:00:10"
+    mock_api[1].return_value = [data]
+    entry = MockConfigEntry(domain=DOMAIN, data=account, options=options)
+    entry.add_to_hass(hass)
+    await hass.config_entries.async_setup(entry.entry_id)
+    await hass.async_block_till_done()
+    registry = er.async_get(hass)
+    presence_id = registry.async_get_entity_id("binary_sensor", DOMAIN, f"{entry.entry_id}_presence")
+    scheduled_id = registry.async_get_entity_id("binary_sensor", DOMAIN, f"{entry.entry_id}_scheduled")
+    assert hass.states.get(presence_id).state == "on"
+    assert hass.states.get(scheduled_id).state == "on"
+    calls = mock_api[1].call_count
+    later = NOW + timedelta(seconds=31)
+    freezer.move_to(later)
+    async_fire_time_changed(hass, later)
+    await hass.async_block_till_done()
+    assert hass.states.get(presence_id).state == "unknown"
+    assert hass.states.get(presence_id).attributes["reason"] == "expired_open_clock"
+    assert hass.states.get(scheduled_id).state == "off"
+    assert mock_api[1].call_count == calls
+    await hass.config_entries.async_unload(entry.entry_id)

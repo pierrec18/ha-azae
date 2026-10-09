@@ -1,10 +1,11 @@
 # Validation — 9 octobre 2026
 
 - Home Assistant 2026.10.0, Python 3.14, pytest-homeassistant-custom-component 0.13.371.
-- 42 tests automatisés réussis, sans compte Azaé ni accès à son API.
+- 43 tests automatisés réussis, sans compte Azaé ni accès à son API.
 - Flux utilisateur, doublons, options, reconfiguration et réauthentification vérifiés.
 - Chargement/déchargement des plateformes, calendrier, inconnus, disponibilité et diagnostics vérifiés.
 - HTTP simulé : payload, en-têtes, rejet des redirections, token en mémoire, retry unique, erreurs et backoff partagé.
+- Timer local : expiration du pointage et fin du planning sans requête API supplémentaire.
 - Dates : Europe/Paris, passage été/hiver, minuit, intervalle de fin exclusive.
 - Présence : séparation du planning, mode pointage optionnel, ancienneté et incohérences.
 - Archives : layout `/custom_components/azae`, intégrité ZIP et SHA-256.
